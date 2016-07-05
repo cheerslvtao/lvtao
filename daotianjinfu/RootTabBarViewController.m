@@ -89,7 +89,7 @@
         UITapGestureRecognizer * tap = [[UITapGestureRecognizer alloc]initWithTarget:self action:@selector(removeView:)];
         [self.menuM addGestureRecognizer:tap];
         
-        _menuV = [[UIImageView alloc]initWithFrame:CGRectMake(width_screen-163/2-5, 64, 163/2, 156/2)];
+        _menuV = [[UIImageView alloc]initWithFrame:CGRectMake(width_screen-163*2/3-5, 64, 163*2/3, 156*2/3)];
         _menuV.image = [[UIImage imageNamed:@"menubg"] imageWithRenderingMode:UIImageRenderingModeAlwaysOriginal];
         _menuV.userInteractionEnabled = YES;
         [self.menuM addSubview:_menuV];
@@ -101,18 +101,19 @@
     _RightBtn.selected = !_RightBtn.selected;
 
     UIButton * leftBtn = [UIButton buttonWithType:UIButtonTypeCustom];
-    leftBtn.frame = CGRectMake(0, 0, 163/2, 156/4);
-    leftBtn.titleLabel.font = [UIFont systemFontOfSize:15];
+    leftBtn.frame = CGRectMake(0, 0, 163*2/3, 156/3);
+    leftBtn.titleLabel.font = [UIFont systemFontOfSize:18];
     [leftBtn setTitle:@"知识库" forState:UIControlStateNormal];
     [leftBtn setTitleColor:[UIColor whiteColor] forState:UIControlStateNormal];
     [leftBtn addTarget:self action:@selector(zhishiku:) forControlEvents:UIControlEventTouchUpInside];
     
     UIButton * rightBtn = [UIButton buttonWithType:UIButtonTypeCustom];
-    rightBtn.frame = CGRectMake(0, 156/4, 163/2, 156/4);
+    rightBtn.frame = CGRectMake(0, 156/4, 163*2/3, 156/3);
     [rightBtn setTitleColor:[UIColor whiteColor] forState:UIControlStateNormal];
-    rightBtn.titleLabel.font = [UIFont systemFontOfSize:15];
+    rightBtn.titleLabel.font = [UIFont systemFontOfSize:18];
     [rightBtn setTitle:@"审核" forState:UIControlStateNormal];
     [rightBtn addTarget:self action:@selector(shenHeBtn:) forControlEvents:UIControlEventTouchUpInside];
+    
     
     [_menuV addSubview:leftBtn];
     [_menuV addSubview:rightBtn];
@@ -127,8 +128,10 @@
 -(void)shenHeBtn:(UIButton *)btn{
     
     NSLog(@"审核");
+    
+    _RightBtn.selected =YES;
+    [_menuM removeFromSuperview];
     [_menuV removeFromSuperview];
-    _RightBtn.selected = !_RightBtn.selected;
     ShenHeViewController*shenheVc=[ShenHeViewController new];
     shenheVc.hidesBottomBarWhenPushed=YES;
     UINavigationController * nav = [self.viewControllers objectAtIndex:_flag];
@@ -139,29 +142,19 @@
 -(void)zhishiku:(UIButton *)btn{
     NSLog(@"知识库");
     
+    _RightBtn.selected = YES;
+    [_menuM removeFromSuperview];
     [_menuV removeFromSuperview];
-    _RightBtn.selected = !_RightBtn.selected;
-    
     KnowledgeViewController * knowledgeVC = [[KnowledgeViewController alloc]init];
     knowledgeVC.hidesBottomBarWhenPushed = YES;
     
     UINavigationController * nav = [self.viewControllers objectAtIndex:_flag];
     [nav pushViewController:knowledgeVC animated:YES];
+
 }
 
-- (void)didReceiveMemoryWarning {
-    [super didReceiveMemoryWarning];
-    // Dispose of any resources that can be recreated.
-}
 
-/*
-#pragma mark - Navigation
 
-// In a storyboard-based application, you will often want to do a little preparation before navigation
-- (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
-    // Get the new view controller using [segue destinationViewController].
-    // Pass the selected object to the new view controller.
-}
-*/
+
 
 @end

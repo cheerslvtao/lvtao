@@ -16,61 +16,19 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-    self.view.backgroundColor=[UIColor colorWithRed:242.0/255.0 green:246.0/255.0 blue:247.0/255.0 alpha:1];
+    self.view.backgroundColor=[UIColor LowWhileColor];
     self.automaticallyAdjustsScrollViewInsets = NO;
 
-    self.view.backgroundColor=[UIColor whiteColor];
-    _tabView=[[UITableView alloc]initWithFrame:CGRectMake(0, 84, [UIScreen mainScreen].bounds.size.width, 44*3+155)];
+    _tabView=[[UITableView alloc]initWithFrame:CGRectMake(0, 20, [UIScreen mainScreen].bounds.size.width, 44*3+155)];
     
     _tabView.dataSource=self;
     _tabView.delegate=self;
-    _tabView.scrollEnabled = NO;
-
+    _tabView.estimatedRowHeight = 45;
+    _tabView.rowHeight = UITableViewAutomaticDimension;
     _tabView.separatorInset = UIEdgeInsetsMake(0, 15, 0, 15);
-
+    _tabView.bounces = NO;
     [self.view addSubview:_tabView];
     [self addRightItem];
-    
-//    UILabel*lab=[UILabel new];
-//    NSString*str=@"    注意事项:\n\t中国原创歌词音乐网提供最新、最热、最流行的在线音乐网-致力于打造最专业的歌曲大全,原创音乐,原创歌曲,原创歌词,填词,写歌词,作曲,编曲,伴奏,诗词,翻唱网,midi";
-//    NSRange range = [str rangeOfString:@":"];
-//
-//    NSMutableAttributedString*attStr=[[NSMutableAttributedString alloc]initWithString:str];
-//
-//    [attStr addAttribute:NSForegroundColorAttributeName value:[UIColor redColor] range:NSMakeRange(range.location+1,attStr.length-range.location-1)];
-//    
-//
-//    lab.attributedText=attStr;
-//lab.lineBreakMode = UILineBreakModeWordWrap;
-//    lab.numberOfLines = 0;
-//    lab.backgroundColor=[UIColor whiteColor];
-//
-//    [self.view addSubview:lab];
-//    [lab mas_makeConstraints:^(MASConstraintMaker *make) {
-//        make.top.equalTo(_tabView.mas_bottom).offset(1);        make.left.offset(12);
-//        make.right.offset(-12);
-//    }];
-//    NSArray*weiwanchengArr=@[@"公司名称:石家庄稻田网络公司",@"公司地址:石家庄时代方舟b座906",@"联系人:小明",@"注意事项:中国原创歌词音乐网提供最新、最热、最流行的在线音乐网-致力于打造最专业的歌曲大全,原创音乐,原创歌曲,原创歌词,填词,写歌词,作曲,编曲,伴奏,诗词,翻唱网,midi",];
-//    for (int i=0; i<4; i++) {
-//        UILabel*lab=[UILabel new];
-//        lab.text=weiwanchengArr[i];
-//        lab.backgroundColor=[UIColor whiteColor];
-//        lab.lineBreakMode = UILineBreakModeWordWrap;
-//        lab.numberOfLines = 0;
-//        CGSize maximumLabelSize = CGSizeMake(100, 9999);//
-//             //关键语句
-//             CGSize expectSize = [lab sizeThatFits:maximumLabelSize];
-//        
-//        
-//        [self.view addSubview:lab];
-//        [lab mas_makeConstraints:^(MASConstraintMaker *make) {
-//            make.top.offset(80.0f+30*i);
-//            make.left.offset(10.0f);
-//            make.right.offset(-10);
-//            make.height.offset(expectSize.width);
-//            make.width.offset(expectSize.width);
-//        }];
-//    }
     
     
 }
@@ -90,17 +48,18 @@
     [self.navigationController popViewControllerAnimated:YES];
 }
 
+
+#pragma mark == tableView delegate
 -(NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
     return 4;
 }
+
+
 -(CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath{
-    if (indexPath.row==3) {
-        return 125;
-    }else{
-        return 44;
-    }
+    return UITableViewAutomaticDimension;
 }
+
 -(UITableViewCell*)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
     if (indexPath.row==3) {
@@ -115,6 +74,7 @@
         NSMutableAttributedString*attStr=[[NSMutableAttributedString alloc]initWithString:str];
         
         [attStr addAttribute:NSForegroundColorAttributeName value:[UIColor grayColor] range:NSMakeRange(range.location+1,attStr.length-range.location-1)];
+        cell.selectionStyle=UITableViewCellAccessoryNone;
 
         cell.textLabel.attributedText=attStr;
         return cell;
@@ -124,14 +84,8 @@
     if(!cell){
         cell=[[UITableViewCell alloc]initWithStyle:UITableViewCellStyleDefault reuseIdentifier:@"cell"];
     }
-
-    NSString*gongsiStr=@"公司名称:石家庄稻田网络";
-
- //    NSString*dizhiStr=@"石家庄时代方舟";
-//    NSString*nameStr=@"王旭阳";
-//    NSArray*infoArr=@[gongsiStr,dizhiStr,nameStr];
     
-    NSArray*titleArr=@[@"公司名称: 石家庄稻田网络王 ",@"公司地址: 石家庄时代方舟 ",@"联系人: 王旭阳"];
+    NSArray*titleArr=@[@"公司名称:  石家庄稻田网络王 ",@"公司地址: 石家庄时代方舟 ",@"联系人: 王旭阳"];
     NSString*titiStr=titleArr[indexPath.row];
     NSRange range = [titiStr rangeOfString:@":"];
     

@@ -12,6 +12,7 @@
 #import "RootTabBarViewController.h"
 #import "ShenHeViewController.h"
 #import "JPUSHService.h"
+#import "ViewController.h"
 @interface AppDelegate ()
 {
     RootTabBarViewController * rootVC ;
@@ -36,8 +37,8 @@
     }
     
     //2.启动SDK
-    [JPUSHService setupWithOption:launchOptions appKey:@""
-                          channel:@""
+    [JPUSHService setupWithOption:launchOptions appKey:@"2d07b1ea66524e2d6fbb4f54"
+                          channel:nil
                  apsForProduction:NO
             advertisingIdentifier:nil];
 
@@ -71,13 +72,18 @@
 }
 
 //  处理收到的 APNs 消息
--(void)application:(UIApplication *)application didReceiveRemoteNotification:(NSDictionary *)userInfo{
-    [JPUSHService handleRemoteNotification:userInfo];
-}
-
+//-(void)application:(UIApplication *)application didReceiveRemoteNotification:(NSDictionary *)userInfo{
+//     NSLog(@"userInfo ----APNS---->>>  %@",userInfo);
+//    [JPUSHService handleRemoteNotification:userInfo];
+//   
+//}
 //
 -(void)application:(UIApplication *)application didReceiveRemoteNotification:(NSDictionary *)userInfo fetchCompletionHandler:(void (^)(UIBackgroundFetchResult))completionHandler{
     [JPUSHService handleRemoteNotification:userInfo];
+    NSLog(@"userInfo -------->>>  %@",userInfo);
+    ViewController * checking = [[ViewController alloc]init];
+    checking.hidesBottomBarWhenPushed = YES;
+    [[rootVC.viewControllers objectAtIndex:0]  pushViewController:checking animated:YES];
     completionHandler(UIBackgroundFetchResultNewData);
 }
 
@@ -135,7 +141,7 @@
     barImage = [UIImage imageNamed:@"headbg"];
     barImage = [barImage resizableImageWithCapInsets:UIEdgeInsetsZero resizingMode:UIImageResizingModeStretch];
     [UINavigationBar appearance].translucent = NO;
-    [[UINavigationBar appearance] setBackgroundImage:barImage forBarMetrics:UIBarMetricsDefault];
+    [[UINavigationBar appearance] setBackgroundImage:[barImage imageWithRenderingMode:UIImageRenderingModeAlwaysOriginal] forBarMetrics:UIBarMetricsDefault];
     [[UINavigationBar appearance] setBarStyle:UIBarStyleBlack];
     
 }

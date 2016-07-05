@@ -8,7 +8,7 @@
 
 #import "SkillViewController.h"
 
-@interface SkillViewController ()
+@interface SkillViewController ()<UIGestureRecognizerDelegate>
 
 
 @end
@@ -17,6 +17,8 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
+    self.navigationController.interactivePopGestureRecognizer.enabled = YES;
+    self.navigationController.interactivePopGestureRecognizer.delegate =self;
 
     [self addView];
     [self addRightItem];

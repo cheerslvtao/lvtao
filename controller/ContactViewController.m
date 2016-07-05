@@ -8,7 +8,7 @@
 
 #import "ContactViewController.h"
 #import "EditingInfoViewController.h"
-@interface ContactViewController ()<UITableViewDelegate,UITableViewDataSource>
+@interface ContactViewController ()<UITableViewDelegate,UITableViewDataSource,UIGestureRecognizerDelegate>
 
 @property (nonatomic,strong) UITableView * userBaseTable;
 
@@ -20,6 +20,9 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
+    
+    self.navigationController.interactivePopGestureRecognizer.enabled = YES;
+    self.navigationController.interactivePopGestureRecognizer.delegate =self;
 
     self.dataArr = [[NSMutableArray alloc]initWithObjects:@"手机：12344566777",@"Q Q：735835975",@"微信：12344566777",@"邮箱：12344566777qq.com", nil];
     [self addRightItem];

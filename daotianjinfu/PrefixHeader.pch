@@ -1,13 +1,14 @@
 //
-//  UIDefine.h
+//  PrefixHeader.pch
 //  daotianjinfu
 //
-//  Created by 吕涛 on 16/6/15.
+//  Created by 吕涛 on 16/7/5.
 //  Copyright © 2016年 吕涛. All rights reserved.
 //
 
-#ifndef UIDefine_h
-#define UIDefine_h
+#ifndef PrefixHeader_pch
+#define PrefixHeader_pch
+
 #import <UIKit/UIKit.h>
 #import <Foundation/Foundation.h>
 #import "RootTabBarViewController.h"
@@ -20,4 +21,4 @@
 #define LowBlueColor colorWithRed:61.0/255.0 green:95.0/255.0 blue:149.0/255.0 alpha:1
 
 
-#endif /* UIDefine_h */
+#endif /* PrefixHeader_pch */

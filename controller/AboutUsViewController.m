@@ -8,7 +8,7 @@
 
 #import "AboutUsViewController.h"
 
-@interface AboutUsViewController ()
+@interface AboutUsViewController ()<UIGestureRecognizerDelegate>
 
 @end
 
@@ -17,6 +17,10 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     self.view.backgroundColor = [UIColor colorWithRed:242.0/255.0 green:246.0/255.0 blue:247.0/255.0 alpha:1];
+    
+    self.navigationController.interactivePopGestureRecognizer.enabled = YES;
+    self.navigationController.interactivePopGestureRecognizer.delegate =self;
+    
     [self addRightItem];
     [self addUI];
 }

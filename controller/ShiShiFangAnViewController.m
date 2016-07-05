@@ -7,7 +7,7 @@
 //
 
 #import "ShiShiFangAnViewController.h"
-
+#import "CreateNewMessageViewController.h"
 @interface ShiShiFangAnViewController ()
 
 @end
@@ -21,6 +21,8 @@
     _tabView=[[UITableView alloc]initWithFrame:CGRectMake(0, 20, [UIScreen mainScreen].bounds.size.width, [UIScreen mainScreen].bounds.size.height-84)];
     _tabView.dataSource=self;
     _tabView.delegate=self;
+    _tabView.estimatedRowHeight = 45;
+    _tabView.rowHeight = UITableViewAutomaticDimension;
     [self.view addSubview:_tabView];
     [self addRightItem];
 }
@@ -34,11 +36,30 @@
     UIBarButtonItem * item2 = [[UIBarButtonItem alloc]initWithCustomView:btn2];
     
     self.navigationItem.leftBarButtonItems = @[item1,item2];
+    //右边
+    UIButton * btn = [UIButton buttonWithType:UIButtonTypeCustom];
+    btn.frame = CGRectMake(0, 0, 45, 35);
+    [btn setTitle:@"编辑" forState:UIControlStateNormal];
+    [btn setTintColor:[UIColor whiteColor]];
+    btn.layer.borderWidth = 0.4;
+    btn.layer.cornerRadius = 4;
+    btn.layer.borderColor = [UIColor whiteColor].CGColor;
+    
+    [btn addTarget:self action:@selector(editing) forControlEvents:UIControlEventTouchUpInside];
+    UIBarButtonItem * item =[[UIBarButtonItem alloc]initWithCustomView:btn];
+    self.navigationItem.rightBarButtonItem = item;
+}
+
+-(void)editing{
+    CreateNewMessageViewController * new = [CreateNewMessageViewController new];
+    new.backTitle = @"编辑实施方案";
+    [self.navigationController pushViewController:new animated:YES];
 }
 
 -(void)backMine{
     [self.navigationController popViewControllerAnimated:YES];
 }
+
 
 -(NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
@@ -55,32 +76,28 @@
         cell.textLabel.text=@"2015-10-8 12:00";
         cell.textLabel.font=[UIFont systemFontOfSize:14];
         cell.textLabel.backgroundColor=[UIColor grayColor];
+        
     }if (indexPath.row==1) {
-        UILabel*lab=[[UILabel alloc]initWithFrame:CGRectMake(20,0 , [UIScreen mainScreen].bounds.size.width-30, 200)];
-        lab.numberOfLines=0;
+
         NSString*str=@"服务事项:\n1.希望你的手机能够保持联网状态，这样我们可以顺利给你发送信息。\n2.希望您打开GPS服务，这样可以最快给你发送最近的。\n3.如果有任何问题可以通过\"我\"->\"设置\"->\"平台联系方式\"所列的联系方式联系我们。";
         NSRange range = [str rangeOfString:@":"];
         
         NSMutableAttributedString*attStr=[[NSMutableAttributedString alloc]initWithString:str];
         
         [attStr addAttribute:NSForegroundColorAttributeName value:[UIColor grayColor] range:NSMakeRange(range.location+1,attStr.length-range.location-1)];
-        lab.attributedText=attStr;
-        [cell addSubview:lab];
+        cell.textLabel.attributedText = attStr;
+
     }
+    cell.textLabel.numberOfLines = 0;
     
     return cell;
 
 }
 -(CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    if (indexPath.row==0) {
-        return 44;
-    }if (indexPath.row==1) {
-        return 200;
-    }
-    return 0;
-    
+    return UITableViewAutomaticDimension;
 }
+
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.

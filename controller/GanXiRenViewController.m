@@ -8,7 +8,9 @@
 
 #import "GanXiRenViewController.h"
 
-@interface GanXiRenViewController ()
+@interface GanXiRenViewController ()<UITableViewDataSource,UITableViewDelegate>
+@property (nonatomic,strong) UITableView * personTableView;
+@property (nonatomic,strong) NSArray * dataArr;
 
 @end
 
@@ -18,7 +20,7 @@
     [super viewDidLoad];
     self.view.backgroundColor=[UIColor whiteColor];
     [self addRightItem];
-    // Do any additional setup after loading the view.
+    [self.view addSubview:self.personTableView];
 }
 #pragma mark == 左边 右边
 -(void)addRightItem{
@@ -36,19 +38,42 @@
 }
 
 
-- (void)didReceiveMemoryWarning {
-    [super didReceiveMemoryWarning];
-    // Dispose of any resources that can be recreated.
+#pragma mark == 初始化tableView
+-(UITableView *)personTableView{
+    if (!_personTableView ) {
+        _personTableView = [[UITableView alloc]initWithFrame:CGRectMake(0, 20, width_screen, height_screen-84) style:UITableViewStylePlain];
+        _personTableView.delegate = self;
+        _personTableView.dataSource = self;
+        _personTableView.bounces =NO;
+    }
+    return _personTableView;
 }
 
-/*
-#pragma mark - Navigation
+#pragma mark ==数组
+-(NSArray * )dataArr{
 
-// In a storyboard-based application, you will often want to do a little preparation before navigation
-- (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
-    // Get the new view controller using [segue destinationViewController].
-    // Pass the selected object to the new view controller.
+    if (!_dataArr){
+        _dataArr = [[NSArray alloc]initWithObjects:@"服务顾问：张三",@"项目经理：李四",@"甲方负责人：王五",@"项目成员：李青",@"产品经理：艾希",@"直属领导：诺克萨斯", nil];
+    }
+    return _dataArr;
 }
-*/
+
+-(NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section{
+    return self.dataArr.count;
+}
+
+-(UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath{
+    static NSString * str = @"ganxiren";
+    UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:str];
+    if (!cell) {
+        cell = [[UITableViewCell alloc]initWithStyle:UITableViewCellStyleDefault reuseIdentifier:str];
+    }
+    NSString * string = self.dataArr[indexPath.row];
+    NSRange range = [string rangeOfString:@"："];
+    NSMutableAttributedString * attStr = [[NSMutableAttributedString alloc]initWithString:string];
+    [attStr addAttribute:NSForegroundColorAttributeName value:[UIColor grayColor] range:NSMakeRange(range.location+1, string.length -range.location -1 )];
+    cell.textLabel.attributedText =attStr;
+    return cell;
+}
 
 @end

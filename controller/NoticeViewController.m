@@ -9,7 +9,7 @@
 #import "NoticeViewController.h"
 #import "NoticeCell.h"
 
-@interface NoticeViewController ()<UITableViewDelegate,UITableViewDataSource>
+@interface NoticeViewController ()<UITableViewDelegate,UITableViewDataSource,UIGestureRecognizerDelegate>
 
 @property (nonatomic,strong) UITableView * noticeTableView;
 
@@ -23,6 +23,8 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
+    self.navigationController.interactivePopGestureRecognizer.enabled = YES;
+    self.navigationController.interactivePopGestureRecognizer.delegate =self;
 
     [self addRightItem];
     [self.view addSubview:self.noticeTableView];

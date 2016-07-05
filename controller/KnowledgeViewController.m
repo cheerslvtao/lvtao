@@ -7,8 +7,9 @@
 //
 
 #import "KnowledgeViewController.h"
-
-@interface KnowledgeViewController ()<UITableViewDelegate,UITableViewDataSource>
+#import "KnowledgeCell.h"
+#import "DetailViewController.h"
+@interface KnowledgeViewController ()<UITableViewDelegate,UITableViewDataSource,UIGestureRecognizerDelegate>
 
 @property (nonatomic,strong) UITableView * knowledgeTV;
 
@@ -21,19 +22,38 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-    self.navigationItem.title=@"知识库";
+    self.navigationController.interactivePopGestureRecognizer.enabled = YES;
+    self.navigationController.interactivePopGestureRecognizer.delegate =self;
+    
     self.automaticallyAdjustsScrollViewInsets = NO;
     [self.view addSubview:self.knowledgeTV];
-    
+    [self addRightItem];
 }
 
+#pragma mark == 左边 右边
+-(void)addRightItem{
+    //左边
+    UIButton * btn1 = [UIKitFactory addLeftNavigationItemWithTitle:nil imageViewName:@"head_icon_back" actionYESorNO:YES target:self action:@selector(backMine)];
+    UIButton * btn2 = [UIKitFactory addLeftNavigationItemWithTitle:@"知识库" imageViewName:nil actionYESorNO:NO target:self action:@selector(backMine)];
+    UIBarButtonItem  * item1 = [[UIBarButtonItem alloc]initWithCustomView:btn1];
+    UIBarButtonItem * item2 = [[UIBarButtonItem alloc]initWithCustomView:btn2];
+    
+    self.navigationItem.leftBarButtonItems = @[item1,item2];
+}
+
+-(void)backMine{
+    [self.navigationController popViewControllerAnimated:YES];
+}
 
 -(UITableView *)knowledgeTV{
     if (!_knowledgeTV) {
         _knowledgeTV = [[UITableView alloc]initWithFrame:CGRectMake(0, 0, width_screen, height_screen) style:UITableViewStylePlain];
         _knowledgeTV.delegate = self;
         _knowledgeTV.dataSource =self;
+        _knowledgeTV.estimatedRowHeight = 60;
+        _knowledgeTV.rowHeight = UITableViewAutomaticDimension;
         
+        [_knowledgeTV registerNib:[UINib nibWithNibName:@"KnowledgeCell" bundle:nil] forCellReuseIdentifier:@"KnowledgeCell"];
         _knowledgeTV.showsVerticalScrollIndicator = NO;
     }
     return _knowledgeTV;
@@ -44,34 +64,20 @@
 }
 
 -(CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath{
-    return 80;
+    return UITableViewAutomaticDimension;
 }
 
 -(UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath{
     
-    static NSString * knowledgeId = @"knowledge";
-    UITableViewCell * cell = [tableView dequeueReusableCellWithIdentifier:knowledgeId];
-    if (!cell) {
-        cell = [[UITableViewCell alloc]initWithStyle:UITableViewCellStyleDefault reuseIdentifier:knowledgeId];
-    }
-    cell.textLabel.text = [NSString stringWithFormat:@"标题：稻田金服 %ld 号",(long)indexPath.row];
-//    cell.detailTextLabel.text = [NSString stringWithFormat:@"作者：光之翼老 %ld ",indexPath.row];
+    KnowledgeCell * cell = [tableView dequeueReusableCellWithIdentifier:@"KnowledgeCell" forIndexPath:indexPath];
+    cell.title.text = [NSString stringWithFormat:@"标题：稻田金服 %ld 号",(long)indexPath.row];
+    cell.name.text = @"光之翼";
     return cell;
     
 }
-- (void)didReceiveMemoryWarning {
-    [super didReceiveMemoryWarning];
-    // Dispose of any resources that can be recreated.
+-(void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
+    DetailViewController * vc = [DetailViewController new];
+    
+    [self.navigationController pushViewController:vc animated:YES];
 }
-
-/*
-#pragma mark - Navigation
-
-// In a storyboard-based application, you will often want to do a little preparation before navigation
-- (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
-    // Get the new view controller using [segue destinationViewController].
-    // Pass the selected object to the new view controller.
-}
-*/
-
 @end

@@ -85,7 +85,7 @@
                 <outlet property="status" destination="PQT-Mu-5nt" id="cEw-KV-RbT"/>
                 <outlet property="time" destination="2TB-Wi-17a" id="RX9-UH-7vu"/>
             </connections>
-            <point key="canvasLocation" x="-212" y="183"/>
+            <point key="canvasLocation" x="-169" y="235"/>
         </tableViewCell>
     </objects>
 </document>

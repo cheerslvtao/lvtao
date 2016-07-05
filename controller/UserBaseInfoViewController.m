@@ -8,7 +8,7 @@
 
 #import "UserBaseInfoViewController.h"
 #import "EditingInfoViewController.h"
-@interface UserBaseInfoViewController ()<UIImagePickerControllerDelegate,UINavigationControllerDelegate>
+@interface UserBaseInfoViewController ()<UIImagePickerControllerDelegate,UINavigationControllerDelegate,UIGestureRecognizerDelegate>
 
 @property (nonatomic,strong) UIImageView * userHeaderView;
 
@@ -18,6 +18,9 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
+    self.navigationController.interactivePopGestureRecognizer.enabled = YES;
+    self.navigationController.interactivePopGestureRecognizer.delegate =self;
+
     _dataArr = [[NSMutableArray alloc]initWithObjects:@"工号：123456789",@"岗位：首席质量官",@"资金账号：123456789123456",@"身份证：130130133013131313",@"当前住址：石家庄长安区时代方舟",@"紧急联系人：张三",@"紧急联系人电话：1881888389387", nil];
     self.automaticallyAdjustsScrollViewInsets = NO;
     self.view.backgroundColor = [UIColor whiteColor];

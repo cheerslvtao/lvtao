@@ -7,8 +7,13 @@
 //
 
 #import "ShenHeViewController.h"
+#import "ShenHeCell.h"
+#import "ShenHeDetailViewController.h"
+@interface ShenHeViewController ()<UIGestureRecognizerDelegate,UITableViewDelegate,UITableViewDataSource>
 
-@interface ShenHeViewController ()
+@property (nonatomic,strong) UITableView * tableView;
+
+@property (nonatomic,strong) NSArray * dataArr;
 
 @end
 
@@ -16,47 +21,83 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
+    self.navigationController.interactivePopGestureRecognizer.enabled = YES;
+    self.navigationController.interactivePopGestureRecognizer.delegate =self;
+
+    self.view.backgroundColor = [UIColor LowWhileColor];
     
-    self.view.backgroundColor = [UIColor whiteColor];
-    self.navigationItem.title=@"审核";
-    NSArray*btnArr=@[@"同意",@"修改",@"批注"];
-    for (int i=0; i<3; i++) {
-        UIButton *btn=[UIButton buttonWithType:UIButtonTypeCustom];
-        btn.frame=CGRectMake((self.view.bounds.size.width/3+10)*i+10, self.view.bounds.size.height/3, self.view.bounds.size.width/4, 45);
-        [btn setTitle:btnArr[i] forState:UIControlStateNormal];
-        btn.backgroundColor=[UIColor blueColor];
-        btn.alpha=0.7;
-        btn.layer.cornerRadius=10;
-        [self.view addSubview:btn];
-    }
+    [self.view addSubview:self.tableView];
+
+    [self addRightItem];
+}
+
+#pragma mark == 左边 右边
+-(void)addRightItem{
+    //左边
+    UIButton * btn1 = [UIKitFactory addLeftNavigationItemWithTitle:nil imageViewName:@"head_icon_back" actionYESorNO:YES target:self action:@selector(backMine)];
+    UIButton * btn2 = [UIKitFactory addLeftNavigationItemWithTitle:@"审核" imageViewName:nil actionYESorNO:NO target:self action:@selector(backMine)];
+    UIBarButtonItem  * item1 = [[UIBarButtonItem alloc]initWithCustomView:btn1];
+    UIBarButtonItem * item2 = [[UIBarButtonItem alloc]initWithCustomView:btn2];
     
-    NSArray*titleArr=@[@"客户信息",@"服务清单",@"沟通记录",@"实施方案",@"实施文档",@"干系人"];
-    for (int i=0; i<6;i++) {
-        UIButton *btn=[UIButton buttonWithType:UIButtonTypeCustom];
-        btn.frame=CGRectMake(10, 49*i+self.view.bounds.size.height/2, self.view.bounds.size.width-20, 44) ;
-        btn.backgroundColor=[UIColor grayColor];
-        btn.alpha=.6;
-        btn.tag=i;
-        [btn setTitle:titleArr[i] forState:UIControlStateNormal];
-        [self.view addSubview:btn];
+    self.navigationItem.leftBarButtonItems = @[item1,item2];
+}
 
+-(void)backMine{
+    [self.navigationController popViewControllerAnimated:YES];
+}
+
+#pragma mark == 初始化数组
+-(UITableView *)tableView{
+    if (!_tableView) {
+        _tableView  = [[UITableView alloc]initWithFrame:CGRectMake(0, 0, width_screen, height_screen-64) style:UITableViewStylePlain];
+        _tableView.delegate=self;
+        _tableView.dataSource = self;
+        [_tableView registerNib:[UINib nibWithNibName:@"ShenHeCell" bundle:nil] forCellReuseIdentifier:@"ShenHeCell"];
     }
-    // Do any additional setup after loading the view.
+    return _tableView;
 }
 
-- (void)didReceiveMemoryWarning {
-    [super didReceiveMemoryWarning];
-    // Dispose of any resources that can be recreated.
+#pragma mark == 初始化数组
+-(NSArray *)dataArr{
+    if (!_dataArr) {
+        _dataArr = [[NSArray alloc]initWithObjects:@{@"content":@"希望您的手机能够保持联网状态，这样可以及时的给你发送订单信息",@"other":@"待反馈后再看",@"status":@"待审核"},@{@"content":@"希望您的手机能够保持联网状态，这样可以及时的给你发送订单信息",@"other":@"待反馈后再看",@"status":@"已审核"}, @{@"content":@"希望您的手机能够保持联网状态，这样可以及时的给你发送订单信息",@"other":@"待反馈后再看",@"status":@"待审核"},  nil];
+    }
+    return _dataArr;
 }
 
-/*
-#pragma mark - Navigation
-
-// In a storyboard-based application, you will often want to do a little preparation before navigation
-- (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
-    // Get the new view controller using [segue destinationViewController].
-    // Pass the selected object to the new view controller.
+-(NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section{
+    return self.dataArr.count;
 }
-*/
+
+-(CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath{
+    return 90;
+}
+-(UITableViewCell * )tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath{
+
+    NSString * content = [self.dataArr[indexPath.row] objectForKey:@"content"];
+    NSString * status = [self.dataArr[indexPath.row] objectForKey:@"status"];
+    NSString * other = [self.dataArr[indexPath.row] objectForKey:@"other"];
+    
+    ShenHeCell * cell = [tableView dequeueReusableCellWithIdentifier:@"ShenHeCell" forIndexPath:indexPath];
+    cell.content.text = content;
+    cell.status.text = status;
+    if ([status isEqualToString:@"待审核"]) {
+        cell.status.textColor = [UIColor redColor];
+    }
+    cell.other.text = other;
+    
+    return cell;
+}
+
+
+-(void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
+    ShenHeDetailViewController * vc = [ShenHeDetailViewController new];
+    [self.navigationController pushViewController:vc animated:YES];
+}
+
+
+
+
+
 
 @end

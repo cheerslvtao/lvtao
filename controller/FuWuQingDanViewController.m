@@ -19,13 +19,17 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     self.automaticallyAdjustsScrollViewInsets=NO;
-    self.view.backgroundColor=[UIColor whiteColor];
-    _tabView=[[UITableView alloc]initWithFrame:CGRectMake(0, 74, [UIScreen mainScreen].bounds.size.width, [UIScreen mainScreen].bounds.size.height)];
+    self.view.backgroundColor= [UIColor LowWhileColor];
+    
+    _tabView=[[UITableView alloc]initWithFrame:CGRectMake(0, 20, [UIScreen mainScreen].bounds.size.width, [UIScreen mainScreen].bounds.size.height-84)];
     _tabView.delegate=self;
     _tabView.dataSource=self;
-    _tabView.scrollEnabled = NO;
+    _tabView.bounces = NO;
+    _tabView.estimatedRowHeight = 45;
+    _tabView.rowHeight = UITableViewAutomaticDimension;
     _tabView.separatorInset = UIEdgeInsetsMake(0, 15, 0, 15);
 
+    
     _tabView.backgroundColor=[UIColor colorWithRed:242.0/255.0 green:246.0/255.0 blue:247.0/255.0 alpha:1];
     [self.view addSubview:_tabView];
     [self addRightItem];
@@ -46,11 +50,13 @@
     [self.navigationController popViewControllerAnimated:YES];
 }
 
+#pragma mark == tableView
 -(NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
     return 2;
 
 }
+
 -(UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
     UITableViewCell *cell=[tableView dequeueReusableCellWithIdentifier:@"cell"];
@@ -68,18 +74,19 @@
 
     }
         if (indexPath.row==1) {
-        UILabel*lab=[[UILabel alloc]initWithFrame:CGRectMake(20,0 , [UIScreen mainScreen].bounds.size.width-30, 200)];
-        lab.numberOfLines=0;
-        NSString*str=@"服务事项:\n1.希望你的手机能够保持联网状态，这样我们可以顺利给你发送信息。\n2.希望您打开GPS服务，这样可以最快给你发送最近的。\n3.如果有任何问题可以通过\"我\"->\"设置\"->\"平台联系方式\"所列的联系方式联系我们。";
-        NSRange range = [str rangeOfString:@":"];
         
-        NSMutableAttributedString*attStr=[[NSMutableAttributedString alloc]initWithString:str];
+            NSString*str=@"服务事项:\n1.希望你的手机能够保持联网状态，这样我们可以顺利给你发送信息。\n2.希望您打开GPS服务，这样可以最快给你发送最近的。\n3.如果有任何问题可以通过\"我\"->\"设置\"->\"平台联系方式\"所列的联系方式联系我们。";
+            NSRange range = [str rangeOfString:@":"];
         
-        [attStr addAttribute:NSForegroundColorAttributeName value:[UIColor grayColor] range:NSMakeRange(range.location+1,attStr.length-range.location-1)];
+            NSMutableAttributedString*attStr=[[NSMutableAttributedString alloc]initWithString:str];
+        
+            [attStr addAttribute:NSForegroundColorAttributeName value:[UIColor grayColor] range:NSMakeRange(range.location+1,attStr.length-range.location-1)];
+            [attStr addAttribute:NSFontAttributeName value:[UIFont systemFontOfSize:15] range:NSMakeRange(range.location+1,attStr.length-range.location-1)];
 
-            lab.attributedText=attStr;
-            [cell addSubview:lab];
+            cell.textLabel.numberOfLines = 0;
+            cell.textLabel.attributedText =attStr;
     }
+    cell.selectionStyle = UITableViewCellSelectionStyleNone;
     return cell;
 }
 
@@ -88,27 +95,9 @@
 
 -(CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    if (indexPath.row==0) {
-        return 44;
-    }if (indexPath.row==1) {
-        return 200;
-    }
-    return 0;
+
+    return UITableViewAutomaticDimension;
 }
 
-- (void)didReceiveMemoryWarning {
-    [super didReceiveMemoryWarning];
-    // Dispose of any resources that can be recreated.
-}
-
-/*
-#pragma mark - Navigation
-
-// In a storyboard-based application, you will often want to do a little preparation before navigation
-- (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
-    // Get the new view controller using [segue destinationViewController].
-    // Pass the selected object to the new view controller.
-}
-*/
 
 @end

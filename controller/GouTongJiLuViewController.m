@@ -7,7 +7,7 @@
 //
 
 #import "GouTongJiLuViewController.h"
-
+#import "CreateNewMessageViewController.h"
 @interface GouTongJiLuViewController ()
 
 @end
@@ -17,14 +17,14 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     _dataArr=@[@"2012-3-5",@"2012-3-6",@"2012-3-7"];
-    _infoArr=@[@"讨论服务器的生计问题",@"探讨app的设计问题",@"探讨app服务人群的百分比"];
+    _infoArr=@[@"讨论服务器的生计问题对方是否地方发顺丰沙发斯蒂芬啥地方萨芬都是法师反倒是防守打法大法师的方法",@"探讨app的设计问题",@"探讨app服务人群的百分比"];
     self.automaticallyAdjustsScrollViewInsets=NO;
 
-    self.view.backgroundColor=[UIColor whiteColor];
-    _tabView=[[UITableView alloc]initWithFrame:CGRectMake(0, 84, [UIScreen mainScreen].bounds.size.width, [UIScreen mainScreen].bounds.size.height-84)];
+    self.view.backgroundColor=[UIColor LowWhileColor];
+    _tabView=[[UITableView alloc]initWithFrame:CGRectMake(0, 20, [UIScreen mainScreen].bounds.size.width, [UIScreen mainScreen].bounds.size.height-84)];
     _tabView.dataSource=self;
     _tabView.delegate=self;
-  _tabView.separatorInset = UIEdgeInsetsMake(0, 15, 0, 15);
+    _tabView.separatorInset = UIEdgeInsetsMake(0, 15, 0, 15);
 
     [self.view addSubview:_tabView];
     [self addRightItem];
@@ -39,6 +39,25 @@
     UIBarButtonItem * item2 = [[UIBarButtonItem alloc]initWithCustomView:btn2];
     
     self.navigationItem.leftBarButtonItems = @[item1,item2];
+    
+    //右边
+    UIButton * btn = [UIButton buttonWithType:UIButtonTypeCustom];
+    btn.frame = CGRectMake(0, 0, 45, 35);
+    [btn setTitle:@"新建" forState:UIControlStateNormal];
+    [btn setTintColor:[UIColor whiteColor]];
+    btn.layer.borderWidth = 0.4;
+    btn.layer.cornerRadius = 4;
+    btn.layer.borderColor = [UIColor whiteColor].CGColor;
+    
+    [btn addTarget:self action:@selector(editing) forControlEvents:UIControlEventTouchUpInside];
+    UIBarButtonItem * item =[[UIBarButtonItem alloc]initWithCustomView:btn];
+    self.navigationItem.rightBarButtonItem = item;
+}
+
+-(void)editing{
+    CreateNewMessageViewController * new = [CreateNewMessageViewController new];
+    new.backTitle = @"新建沟通记录";
+    [self.navigationController pushViewController:new animated:YES];
 }
 
 -(void)backMine{
@@ -49,6 +68,8 @@
 {
     return _dataArr.count;
 }
+
+#pragma mark == tableView delegate
 -(UITableViewCell*)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
     UITableViewCell *cell=[tableView dequeueReusableCellWithIdentifier:@"cell"];
@@ -63,28 +84,20 @@
     dateLab.font=[UIFont systemFontOfSize:13];
     [cell addSubview:dateLab];
     UILabel*infoLab=[[UILabel alloc]initWithFrame:CGRectMake(20, 40,[UIScreen mainScreen].bounds.size.width-30, 40)];
+    infoLab.numberOfLines = 0;
+    infoLab.adjustsFontSizeToFitWidth = YES;
     infoLab.text=_infoArr[indexPath.row];
     
     [cell addSubview:infoLab];
     return cell;
 }
+
 -(CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
 {
     return 80;
 }
-- (void)didReceiveMemoryWarning {
-    [super didReceiveMemoryWarning];
-    // Dispose of any resources that can be recreated.
-}
 
-/*
-#pragma mark - Navigation
 
-// In a storyboard-based application, you will often want to do a little preparation before navigation
-- (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
-    // Get the new view controller using [segue destinationViewController].
-    // Pass the selected object to the new view controller.
-}
-*/
+
 
 @end

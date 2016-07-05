@@ -7,6 +7,13 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		054EBEA71D2B527C002D68B6 /* CreateNewMessageViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 054EBEA61D2B527C002D68B6 /* CreateNewMessageViewController.m */; };
+		054EBEAB1D2B6813002D68B6 /* KnowledgeCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 054EBEA91D2B6813002D68B6 /* KnowledgeCell.m */; };
+		054EBEAC1D2B6813002D68B6 /* KnowledgeCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 054EBEAA1D2B6813002D68B6 /* KnowledgeCell.xib */; };
+		054EBEAF1D2B7489002D68B6 /* DetailViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 054EBEAE1D2B7489002D68B6 /* DetailViewController.m */; };
+		054EBEB41D2B7E00002D68B6 /* ShenHeCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 054EBEB21D2B7E00002D68B6 /* ShenHeCell.m */; };
+		054EBEB51D2B7E00002D68B6 /* ShenHeCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 054EBEB31D2B7E00002D68B6 /* ShenHeCell.xib */; };
+		054EBEB81D2B8511002D68B6 /* ShenHeDetailViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 054EBEB71D2B8511002D68B6 /* ShenHeDetailViewController.m */; };
 		055348191D23BA3800BE9BB5 /* jpush-ios-2.1.8.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 055348171D23BA3800BE9BB5 /* jpush-ios-2.1.8.a */; };
 		0553481B1D23BA6000BE9BB5 /* CFNetwork.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 0553481A1D23BA6000BE9BB5 /* CFNetwork.framework */; };
 		0553481D1D23BA6B00BE9BB5 /* CoreFoundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 0553481C1D23BA6B00BE9BB5 /* CoreFoundation.framework */; };
@@ -71,6 +78,19 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		054EBEA51D2B527C002D68B6 /* CreateNewMessageViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CreateNewMessageViewController.h; sourceTree = "<group>"; };
+		054EBEA61D2B527C002D68B6 /* CreateNewMessageViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CreateNewMessageViewController.m; sourceTree = "<group>"; };
+		054EBEA81D2B6813002D68B6 /* KnowledgeCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = KnowledgeCell.h; sourceTree = "<group>"; };
+		054EBEA91D2B6813002D68B6 /* KnowledgeCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = KnowledgeCell.m; sourceTree = "<group>"; };
+		054EBEAA1D2B6813002D68B6 /* KnowledgeCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = KnowledgeCell.xib; sourceTree = "<group>"; };
+		054EBEAD1D2B7489002D68B6 /* DetailViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DetailViewController.h; sourceTree = "<group>"; };
+		054EBEAE1D2B7489002D68B6 /* DetailViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DetailViewController.m; sourceTree = "<group>"; };
+		054EBEB01D2B7715002D68B6 /* PrefixHeader.pch */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PrefixHeader.pch; sourceTree = "<group>"; };
+		054EBEB11D2B7E00002D68B6 /* ShenHeCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ShenHeCell.h; sourceTree = "<group>"; };
+		054EBEB21D2B7E00002D68B6 /* ShenHeCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ShenHeCell.m; sourceTree = "<group>"; };
+		054EBEB31D2B7E00002D68B6 /* ShenHeCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ShenHeCell.xib; sourceTree = "<group>"; };
+		054EBEB61D2B8511002D68B6 /* ShenHeDetailViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ShenHeDetailViewController.h; sourceTree = "<group>"; };
+		054EBEB71D2B8511002D68B6 /* ShenHeDetailViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ShenHeDetailViewController.m; sourceTree = "<group>"; };
 		055348171D23BA3800BE9BB5 /* jpush-ios-2.1.8.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; path = "jpush-ios-2.1.8.a"; sourceTree = "<group>"; };
 		055348181D23BA3800BE9BB5 /* JPUSHService.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JPUSHService.h; sourceTree = "<group>"; };
 		0553481A1D23BA6000BE9BB5 /* CFNetwork.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CFNetwork.framework; path = System/Library/Frameworks/CFNetwork.framework; sourceTree = SDKROOT; };
@@ -95,7 +115,6 @@
 		05E657F91D22748C003A31B0 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		05E657FF1D227622003A31B0 /* RootTabBarViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RootTabBarViewController.h; sourceTree = "<group>"; };
 		05E658001D227622003A31B0 /* RootTabBarViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RootTabBarViewController.m; sourceTree = "<group>"; };
-		05E658011D227622003A31B0 /* UIDefine.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UIDefine.h; sourceTree = "<group>"; };
 		05E658021D227622003A31B0 /* UIKitFactory.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UIKitFactory.h; sourceTree = "<group>"; };
 		05E658031D227622003A31B0 /* UIKitFactory.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UIKitFactory.m; sourceTree = "<group>"; };
 		05E658071D227641003A31B0 /* CheckingViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CheckingViewController.h; sourceTree = "<group>"; };
@@ -249,7 +268,7 @@
 				05E657EF1D22748C003A31B0 /* ViewController.m */,
 				05E657FF1D227622003A31B0 /* RootTabBarViewController.h */,
 				05E658001D227622003A31B0 /* RootTabBarViewController.m */,
-				05E658011D227622003A31B0 /* UIDefine.h */,
+				054EBEB01D2B7715002D68B6 /* PrefixHeader.pch */,
 				05E658021D227622003A31B0 /* UIKitFactory.h */,
 				05E658031D227622003A31B0 /* UIKitFactory.m */,
 				05E657F11D22748C003A31B0 /* Main.storyboard */,
@@ -318,6 +337,12 @@
 				05E658871D227909003A31B0 /* NoticeCell.h */,
 				05E658881D227909003A31B0 /* NoticeCell.m */,
 				05E658891D227909003A31B0 /* NoticeCell.xib */,
+				054EBEA81D2B6813002D68B6 /* KnowledgeCell.h */,
+				054EBEA91D2B6813002D68B6 /* KnowledgeCell.m */,
+				054EBEAA1D2B6813002D68B6 /* KnowledgeCell.xib */,
+				054EBEB11D2B7E00002D68B6 /* ShenHeCell.h */,
+				054EBEB21D2B7E00002D68B6 /* ShenHeCell.m */,
+				054EBEB31D2B7E00002D68B6 /* ShenHeCell.xib */,
 			);
 			path = view;
 			sourceTree = "<group>";
@@ -369,6 +394,8 @@
 				05E658331D227798003A31B0 /* GanXiRenViewController.m */,
 				05E658341D227798003A31B0 /* GouTongJiLuViewController.h */,
 				05E658351D227798003A31B0 /* GouTongJiLuViewController.m */,
+				054EBEA51D2B527C002D68B6 /* CreateNewMessageViewController.h */,
+				054EBEA61D2B527C002D68B6 /* CreateNewMessageViewController.m */,
 				05E658361D227798003A31B0 /* KeHuXinXiViewController.h */,
 				05E658371D227798003A31B0 /* KeHuXinXiViewController.m */,
 				05E658381D227798003A31B0 /* ShiShiFangAnViewController.h */,
@@ -395,6 +422,8 @@
 			children = (
 				05E658491D227803003A31B0 /* KnowledgeViewController.h */,
 				05E6584A1D227803003A31B0 /* KnowledgeViewController.m */,
+				054EBEAD1D2B7489002D68B6 /* DetailViewController.h */,
+				054EBEAE1D2B7489002D68B6 /* DetailViewController.m */,
 			);
 			name = "知识库";
 			sourceTree = "<group>";
@@ -413,6 +442,8 @@
 			children = (
 				05E6584D1D227803003A31B0 /* ShenHeViewController.h */,
 				05E6584E1D227803003A31B0 /* ShenHeViewController.m */,
+				054EBEB61D2B8511002D68B6 /* ShenHeDetailViewController.h */,
+				054EBEB71D2B8511002D68B6 /* ShenHeDetailViewController.m */,
 			);
 			name = "审核";
 			sourceTree = "<group>";
@@ -512,7 +543,12 @@
 				TargetAttributes = {
 					05E657E41D22748C003A31B0 = {
 						CreatedOnToolsVersion = 7.3.1;
-						DevelopmentTeam = MYEGCHS9F7;
+						DevelopmentTeam = Y4BPFX22C8;
+						SystemCapabilities = {
+							com.apple.BackgroundModes = {
+								enabled = 1;
+							};
+						};
 					};
 				};
 			};
@@ -547,6 +583,8 @@
 				05E6588B1D227909003A31B0 /* IncomeCell.xib in Resources */,
 				05E6588E1D227909003A31B0 /* MineTopCell.xib in Resources */,
 				05E657F31D22748C003A31B0 /* Main.storyboard in Resources */,
+				054EBEB51D2B7E00002D68B6 /* ShenHeCell.xib in Resources */,
+				054EBEAC1D2B6813002D68B6 /* KnowledgeCell.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -607,10 +645,14 @@
 			files = (
 				05E6582A1D227738003A31B0 /* NoticeViewController.m in Sources */,
 				05E658511D227803003A31B0 /* QiangdanViewController.m in Sources */,
+				054EBEAB1D2B6813002D68B6 /* KnowledgeCell.m in Sources */,
 				05E658261D227738003A31B0 /* AboutUsViewController.m in Sources */,
 				05E6583E1D227798003A31B0 /* FuWuDanViewController.m in Sources */,
 				05E658281D227738003A31B0 /* EditingInfoViewController.m in Sources */,
+				054EBEB41D2B7E00002D68B6 /* ShenHeCell.m in Sources */,
 				05E6587D1D2278F2003A31B0 /* View+MASAdditions.m in Sources */,
+				054EBEB81D2B8511002D68B6 /* ShenHeDetailViewController.m in Sources */,
+				054EBEAF1D2B7489002D68B6 /* DetailViewController.m in Sources */,
 				05E6584F1D227803003A31B0 /* IncomeViewController.m in Sources */,
 				05E6588D1D227909003A31B0 /* MineTopCell.m in Sources */,
 				05E658421D227798003A31B0 /* KeHuXinXiViewController.m in Sources */,
@@ -643,6 +685,7 @@
 				05E657F01D22748C003A31B0 /* ViewController.m in Sources */,
 				05E658161D227641003A31B0 /* RegisteViewController2.m in Sources */,
 				05E6582C1D227738003A31B0 /* UserBaseInfoViewController.m in Sources */,
+				054EBEA71D2B527C002D68B6 /* CreateNewMessageViewController.m in Sources */,
 				05E657ED1D22748C003A31B0 /* AppDelegate.m in Sources */,
 				05E658271D227738003A31B0 /* ContactViewController.m in Sources */,
 				05E657EA1D22748C003A31B0 /* main.m in Sources */,
@@ -689,6 +732,7 @@
 				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
 				CLANG_WARN_UNREACHABLE_CODE = YES;
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				CODE_SIGN_IDENTITY = "iPhone Developer: Yan Yi Zhou (8HDHCXQ832)";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				COPY_PHASE_STRIP = NO;
 				DEBUG_INFORMATION_FORMAT = dwarf;
@@ -715,6 +759,7 @@
 				LIBRARY_SEARCH_PATHS = "$(SRCROOT)/Frameworks";
 				MTL_ENABLE_DEBUG_INFO = YES;
 				ONLY_ACTIVE_ARCH = YES;
+				PROVISIONING_PROFILE = "9e052076-ab65-4150-b729-3f28afd14c6f";
 				SDKROOT = iphoneos;
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};
@@ -757,6 +802,7 @@
 				IPHONEOS_DEPLOYMENT_TARGET = 9.3;
 				LIBRARY_SEARCH_PATHS = "$(SRCROOT)/Frameworks";
 				MTL_ENABLE_DEBUG_INFO = NO;
+				PROVISIONING_PROFILE = "9e052076-ab65-4150-b729-3f28afd14c6f";
 				SDKROOT = iphoneos;
 				TARGETED_DEVICE_FAMILY = "1,2";
 				VALIDATE_PRODUCT = YES;
@@ -768,8 +814,10 @@
 			baseConfigurationReference = C5EFDD9F19A1E7CADEB19535 /* Pods-daotianjinfu.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CLANG_ENABLE_OBJC_WEAK = YES;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				GCC_PREFIX_HEADER = "$(SRCROOT)/daotianjinfu/PrefixHeader.pch";
 				INFOPLIST_FILE = daotianjinfu/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
@@ -777,7 +825,7 @@
 					"$(inherited)",
 					"$(PROJECT_DIR)/lib/lib",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = com.xinzhichengying.daotianjinfu;
+				PRODUCT_BUNDLE_IDENTIFIER = com.guangzhiyi.daotianjinfu;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE = "";
 			};
@@ -788,8 +836,10 @@
 			baseConfigurationReference = 0DD691433B906D823C8CA77C /* Pods-daotianjinfu.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CLANG_ENABLE_OBJC_WEAK = YES;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				GCC_PREFIX_HEADER = "$(SRCROOT)/daotianjinfu/PrefixHeader.pch";
 				INFOPLIST_FILE = daotianjinfu/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
@@ -797,7 +847,7 @@
 					"$(inherited)",
 					"$(PROJECT_DIR)/lib/lib",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = com.xinzhichengying.daotianjinfu;
+				PRODUCT_BUNDLE_IDENTIFIER = com.guangzhiyi.daotianjinfu;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE = "";
 			};

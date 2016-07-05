@@ -13,7 +13,7 @@
 #import "ShiShiFangAnViewController.h"
 #import "ShiShiWenDangViewController.h"
 #import "GanXiRenViewController.h"
-@interface XiangQingViewController ()
+@interface XiangQingViewController ()<UIGestureRecognizerDelegate>
 
 @end
 
@@ -22,9 +22,11 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     
-    self.navigationController.navigationBar.tintColor = [UIColor whiteColor];
-        self.automaticallyAdjustsScrollViewInsets = NO;
-    self.view.backgroundColor=[UIColor colorWithRed:242.0/255.0 green:246.0/255.0 blue:247.0/255.0 alpha:1];
+    self.navigationController.interactivePopGestureRecognizer.enabled = YES;
+    self.navigationController.interactivePopGestureRecognizer.delegate =self;
+    
+    self.automaticallyAdjustsScrollViewInsets = NO;
+    self.view.backgroundColor=[UIColor LowWhileColor];
     _tabView=[[UITableView alloc]initWithFrame:CGRectMake(0, 20, [UIScreen mainScreen].bounds.size.width, 44*6)];
     _tabView.delegate=self;
     _tabView.dataSource=self;

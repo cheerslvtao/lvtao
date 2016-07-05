@@ -25,9 +25,16 @@
 
 @implementation MineViewController
 
+-(void)viewDidAppear:(BOOL)animated{
+    
+    self.navigationController.interactivePopGestureRecognizer.enabled = NO;
+}
+
+
 - (void)viewDidLoad {
     [super viewDidLoad];
     self.automaticallyAdjustsScrollViewInsets = NO;
+    
     self.view.backgroundColor = [UIColor whiteColor];
     [self.view addSubview:self.mineTableView];
     [self version];
