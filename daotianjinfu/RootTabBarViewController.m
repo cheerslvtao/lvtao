@@ -62,13 +62,16 @@
         
         //右边菜单按钮
         _RightBtn = [UIButton buttonWithType:UIButtonTypeCustom];
-        _RightBtn.frame = CGRectMake(0, 0, 8, 36);
+        _RightBtn.frame = CGRectMake(0, 0, 8, 30);
         _RightBtn.tag=idx;
         [_RightBtn setBackgroundImage:[[UIImage imageNamed:@"head_icon_right"] imageWithRenderingMode:UIImageRenderingModeAlwaysOriginal] forState:UIControlStateNormal];
         _RightBtn.selected = YES;
         [_RightBtn addTarget:self action:@selector(addOtherView:) forControlEvents:UIControlEventTouchUpInside];
         UIBarButtonItem * rightItem = [[UIBarButtonItem alloc]initWithCustomView:_RightBtn];
-        viewController.navigationItem.rightBarButtonItem = rightItem;
+        
+        UIBarButtonItem * fixItem = [[UIBarButtonItem alloc]initWithBarButtonSystemItem:UIBarButtonSystemItemFixedSpace target:self action:nil];
+        fixItem.width = 10;
+        viewController.navigationItem.rightBarButtonItems = @[fixItem,rightItem];
         
         
         [nvArr addObject:navigation];
@@ -89,7 +92,7 @@
         UITapGestureRecognizer * tap = [[UITapGestureRecognizer alloc]initWithTarget:self action:@selector(removeView:)];
         [self.menuM addGestureRecognizer:tap];
         
-        _menuV = [[UIImageView alloc]initWithFrame:CGRectMake(width_screen-163*2/3-5, 64, 163*2/3, 156*2/3)];
+        _menuV = [[UIImageView alloc]initWithFrame:CGRectMake(width_screen-163*2/3-8, 64, 163*2/3, 156*2/3)];
         _menuV.image = [[UIImage imageNamed:@"menubg"] imageWithRenderingMode:UIImageRenderingModeAlwaysOriginal];
         _menuV.userInteractionEnabled = YES;
         [self.menuM addSubview:_menuV];
@@ -103,12 +106,14 @@
     UIButton * leftBtn = [UIButton buttonWithType:UIButtonTypeCustom];
     leftBtn.frame = CGRectMake(0, 0, 163*2/3, 156/3);
     leftBtn.titleLabel.font = [UIFont systemFontOfSize:18];
+//    leftBtn.backgroundColor = [UIColor redColor];
     [leftBtn setTitle:@"知识库" forState:UIControlStateNormal];
     [leftBtn setTitleColor:[UIColor whiteColor] forState:UIControlStateNormal];
     [leftBtn addTarget:self action:@selector(zhishiku:) forControlEvents:UIControlEventTouchUpInside];
     
     UIButton * rightBtn = [UIButton buttonWithType:UIButtonTypeCustom];
-    rightBtn.frame = CGRectMake(0, 156/4, 163*2/3, 156/3);
+//    rightBtn.backgroundColor = [UIColor greenColor];
+    rightBtn.frame = CGRectMake(0, 156/3, 163*2/3, 156/3);
     [rightBtn setTitleColor:[UIColor whiteColor] forState:UIControlStateNormal];
     rightBtn.titleLabel.font = [UIFont systemFontOfSize:18];
     [rightBtn setTitle:@"审核" forState:UIControlStateNormal];

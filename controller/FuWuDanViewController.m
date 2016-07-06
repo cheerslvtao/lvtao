@@ -179,27 +179,28 @@
         UITableViewCell *cell=[tableView dequeueReusableCellWithIdentifier:@"weiwancheng"];
         if(!cell){
             cell=[[UITableViewCell alloc]initWithStyle:UITableViewCellStyleDefault reuseIdentifier:@"weiwancheng"];
+            NSArray * arr = @[@"发单时间:   2016-5-5",@"实施地点:   美国福罗里达州",@"公司名称:   百度公司",@"约定时间:   2019-8-8",@"订单号码:   7878878",@"联系电话:   23434343"];
+            
+            for (int i=0; i<arr.count; i++) {
+                
+                UILabel * label = [[UILabel alloc]initWithFrame:CGRectMake(10, 10+i*20, width_screen-20, 20)];
+                label.font = [UIFont systemFontOfSize:13];
+                label.textColor = [UIColor grayColor];
+                //添加副文本
+                NSRange range = [arr[i] rangeOfString:@":"];
+                NSLog(@"=======%@",NSStringFromRange(range));
+                NSMutableAttributedString * attStr = [[NSMutableAttributedString alloc]initWithString:arr[i]];
+                
+                [attStr addAttributes:@{NSForegroundColorAttributeName:[UIColor blackColor],NSFontAttributeName:[UIFont systemFontOfSize:17]} range:NSMakeRange(range.location+1,[arr[i] length]-range.location-1 )];
+                label.attributedText = attStr;
+                [cell addSubview:label];
+            }
+
         }
         cell.selectionStyle=UITableViewCellAccessoryNone;
         
 
-        NSArray * arr = @[@"发单时间:   2016-5-5",@"实施地点:   美国福罗里达州",@"公司名称:   百度公司",@"约定时间:   2019-8-8",@"订单号码:   7878878",@"联系电话:   23434343"];
-       
-        for (int i=0; i<arr.count; i++) {
-           
-            UILabel * label = [[UILabel alloc]initWithFrame:CGRectMake(10, 10+i*20, width_screen-20, 20)];
-            label.font = [UIFont systemFontOfSize:13];
-            label.textColor = [UIColor grayColor];
-            //添加副文本
-            NSRange range = [arr[i] rangeOfString:@":"];
-            NSLog(@"=======%@",NSStringFromRange(range));
-            NSMutableAttributedString * attStr = [[NSMutableAttributedString alloc]initWithString:arr[i]];
-            
-            [attStr addAttributes:@{NSForegroundColorAttributeName:[UIColor blackColor],NSFontAttributeName:[UIFont systemFontOfSize:17]} range:NSMakeRange(range.location+1,[arr[i] length]-range.location-1 )];
-            label.attributedText = attStr;
-            [cell addSubview:label];
-        }
-            
+        
         return cell;
     }
     
@@ -207,27 +208,24 @@
         UITableViewCell *cell=[tableView dequeueReusableCellWithIdentifier:@"yiwancheng"];
         if(!cell){
             cell=[[UITableViewCell alloc]initWithStyle:UITableViewCellStyleDefault reuseIdentifier:@"yiwancheng"];
+            NSArray * arr=@[@"发单时间:   2016-5-5",@"实施地点:   中国广州",@"公司名称:   百度公司",@"约定时间:   2019-8-8",@"订单号码:   7878878",@"联系电话:   23434343"];
+            for (int i=0; i<arr.count; i++) {
+                
+                UILabel * label = [[UILabel alloc]initWithFrame:CGRectMake(10, 10+i*20, width_screen-20, 20)];
+                label.font = [UIFont systemFontOfSize:13];
+                label.textColor = [UIColor grayColor];
+                //添加副文本
+                NSRange range = [arr[i] rangeOfString:@":"];
+                NSLog(@"=======%@",NSStringFromRange(range));
+                NSMutableAttributedString * attStr = [[NSMutableAttributedString alloc]initWithString:arr[i]];
+                
+                [attStr addAttributes:@{NSForegroundColorAttributeName:[UIColor blackColor],NSFontAttributeName:[UIFont systemFontOfSize:15]} range:NSMakeRange(range.location+1,[arr[i] length]-range.location-1 )];
+                label.attributedText = attStr;
+                [cell addSubview:label];
+            }
+
         }
         cell.selectionStyle=UITableViewCellAccessoryNone;
-
-        NSArray * arr=@[@"发单时间:   2016-5-5",@"实施地点:   中国广州",@"公司名称:   百度公司",@"约定时间:   2019-8-8",@"订单号码:   7878878",@"联系电话:   23434343"];
-        for (int i=0; i<arr.count; i++) {
-            
-            UILabel * label = [[UILabel alloc]initWithFrame:CGRectMake(10, 10+i*20, width_screen-20, 20)];
-            label.font = [UIFont systemFontOfSize:13];
-            label.textColor = [UIColor grayColor];
-            //添加副文本
-            NSRange range = [arr[i] rangeOfString:@":"];
-            NSLog(@"=======%@",NSStringFromRange(range));
-            NSMutableAttributedString * attStr = [[NSMutableAttributedString alloc]initWithString:arr[i]];
-            
-            [attStr addAttributes:@{NSForegroundColorAttributeName:[UIColor blackColor],NSFontAttributeName:[UIFont systemFontOfSize:17]} range:NSMakeRange(range.location+1,[arr[i] length]-range.location-1 )];
-            label.attributedText = attStr;
-            [cell addSubview:label];
-        }
-        
-
-        
         
         return cell;
 

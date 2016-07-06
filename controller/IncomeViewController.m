@@ -38,6 +38,7 @@
     for (int i=0; i<2; i++) {
         UILabel * label = [[UILabel alloc]initWithFrame:CGRectMake(10, 10+30*i,  width_screen/2, 30)];
         label.text = labelArr[i];
+        label.font = [UIFont systemFontOfSize:15];
         [view addSubview:label];
         
         UIButton * btn = [UIButton buttonWithType:UIButtonTypeCustom];
