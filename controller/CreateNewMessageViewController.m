@@ -18,10 +18,10 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-    
+    [self.view addSubview:self.textView];
+
     self.view.backgroundColor = [UIColor LowWhileColor];
     [self addRightItem];
-    [self.view addSubview:self.textView];
 }
 
 #pragma mark == 左边 右边
@@ -59,7 +59,8 @@
     if (!_textView) {
         _textView = [[UITextView alloc]initWithFrame:CGRectMake(10, 25, width_screen-20,150)];
         _textView.textColor = [UIColor grayColor];
-        _textView.text = self.contenStr;
+        _textView.text = @"输入内容";
+        _textView.delegate =self;
         _textView.font = [UIFont systemFontOfSize:16];
     }
     return _textView;
@@ -69,5 +70,18 @@
     [self.view endEditing:YES];
 }
 
+- (BOOL)textViewShouldBeginEditing:(UITextView *)textView{
+    if ([self.textView.text isEqualToString:@"输入内容"]) {
+        self.textView.text = @"";
+    }
+    return YES;
+}
+
+-(BOOL)textViewShouldEndEditing:(UITextView *)textView{
+    if (self.textView.text.length == 0) {
+        self.textView.text = @"输入内容";
+    }
+    return YES;
+}
 
 @end

@@ -365,14 +365,14 @@
 		05E6582D1D227742003A31B0 /* 我的 */ = {
 			isa = PBXGroup;
 			children = (
+				05E6581E1D227738003A31B0 /* MineViewController.h */,
+				05E6581F1D227738003A31B0 /* MineViewController.m */,
 				05E658181D227738003A31B0 /* AboutUsViewController.h */,
 				05E658191D227738003A31B0 /* AboutUsViewController.m */,
 				05E6581A1D227738003A31B0 /* ContactViewController.h */,
 				05E6581B1D227738003A31B0 /* ContactViewController.m */,
 				05E6581C1D227738003A31B0 /* EditingInfoViewController.h */,
 				05E6581D1D227738003A31B0 /* EditingInfoViewController.m */,
-				05E6581E1D227738003A31B0 /* MineViewController.h */,
-				05E6581F1D227738003A31B0 /* MineViewController.m */,
 				05E658201D227738003A31B0 /* NoticeViewController.h */,
 				05E658211D227738003A31B0 /* NoticeViewController.m */,
 				05E658221D227738003A31B0 /* SkillViewController.h */,

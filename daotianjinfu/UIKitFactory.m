@@ -45,17 +45,14 @@
     if (action){
         btn.frame = CGRectMake(0, 0, 12, 22);
     }else{
-        if (title.length >= 5) {
-
-            btn.frame = CGRectMake(0, 0, 110, 44);
-        }else{
-
-            btn.frame = CGRectMake(0, 0, 80, 44);
-        }
+        btn.frame = CGRectMake(0, 0, 110, 44);
     }
-    btn.titleLabel.textAlignment = NSTextAlignmentLeft;
+    btn.contentHorizontalAlignment = UIControlContentHorizontalAlignmentLeft;
     [btn setTitle:title forState:UIControlStateNormal];
-    [btn setBackgroundImage:[UIImage imageNamed:ImageName]  forState:UIControlStateNormal];
+    if (ImageName!=nil) {
+        [btn setBackgroundImage:[UIImage imageNamed:ImageName]  forState:UIControlStateNormal];
+        
+    }
     [btn addTarget:target action:sel forControlEvents:UIControlEventTouchUpInside];
     
     return btn;

@@ -35,7 +35,7 @@
     NSArray * titleArr = @[@"服务单",@"抢单",@"收入",@"我的"];
     NSArray * imageArr = @[@"menu_fwd",@"menu_qd",@"menu_sr",@"menu_wo"];
     NSArray * selectImageArr = @[@"menu_fwd_d",@"menu_qd_d",@"menu_sr_d",@"menu_wo_d"];
-    NSArray * headImageArr = @[@"head_icon_fwd",@"head_icon_qd",@"menu_sr",@"head_icon_user"];
+    NSArray * headImageArr = @[@"head_icon_fwd",@"head_icon_qd",@"head_icon_sr",@"head_icon_user"];
     
     NSMutableArray * nvArr = [[NSMutableArray alloc]init];
     
@@ -81,55 +81,81 @@
     self.viewControllers = nvArr;
 }
 
-
 -(void)addOtherView:(UIButton *)item {
     //163 × 156   menubg@3x
     if (_RightBtn.selected) {
         self.menuM = [[UIView alloc]initWithFrame:CGRectMake(0, 0, width_screen, height_screen)];
         self.menuM.userInteractionEnabled = YES;
-        [self.view addSubview:self.menuM];
+               [self.view addSubview:self.menuM];
         
         UITapGestureRecognizer * tap = [[UITapGestureRecognizer alloc]initWithTarget:self action:@selector(removeView:)];
         [self.menuM addGestureRecognizer:tap];
         
-        _menuV = [[UIImageView alloc]initWithFrame:CGRectMake(width_screen-163*2/3-8, 64, 163*2/3, 156*2/3)];
-        _menuV.image = [[UIImage imageNamed:@"menubg"] imageWithRenderingMode:UIImageRenderingModeAlwaysOriginal];
-        _menuV.userInteractionEnabled = YES;
+        _menuV = [[UIImageView alloc]initWithFrame:CGRectMake(width_screen-(163*2/3+30), 64, 163*2/3, 156*2/3)];
+        _menuV.layer.anchorPoint = CGPointMake(0.8, 0);
+        _menuV.alpha = 0;
+        _menuV.layer.position = CGPointMake(width_screen-(163*2/3+30) + _menuV.frame.size.width,64);
+        _menuV.transform = CGAffineTransformMakeScale(0.01, 0.01);
+        _menuV.image = [UIImage imageNamed:@"menubg"] ;
         [self.menuM addSubview:_menuV];
-        
-    }else{
-        [_menuV removeFromSuperview];
-    }
-   
-    _RightBtn.selected = !_RightBtn.selected;
 
-    UIButton * leftBtn = [UIButton buttonWithType:UIButtonTypeCustom];
-    leftBtn.frame = CGRectMake(0, 0, 163*2/3, 156/3);
-    leftBtn.titleLabel.font = [UIFont systemFontOfSize:18];
-//    leftBtn.backgroundColor = [UIColor redColor];
-    [leftBtn setTitle:@"知识库" forState:UIControlStateNormal];
-    [leftBtn setTitleColor:[UIColor whiteColor] forState:UIControlStateNormal];
-    [leftBtn addTarget:self action:@selector(zhishiku:) forControlEvents:UIControlEventTouchUpInside];
-    
-    UIButton * rightBtn = [UIButton buttonWithType:UIButtonTypeCustom];
-//    rightBtn.backgroundColor = [UIColor greenColor];
-    rightBtn.frame = CGRectMake(0, 156/3, 163*2/3, 156/3);
-    [rightBtn setTitleColor:[UIColor whiteColor] forState:UIControlStateNormal];
-    rightBtn.titleLabel.font = [UIFont systemFontOfSize:18];
-    [rightBtn setTitle:@"审核" forState:UIControlStateNormal];
-    [rightBtn addTarget:self action:@selector(shenHeBtn:) forControlEvents:UIControlEventTouchUpInside];
-    
-    
-    [_menuV addSubview:leftBtn];
-    [_menuV addSubview:rightBtn];
+        UIButton * leftBtn = [UIButton buttonWithType:UIButtonTypeCustom];
+        leftBtn.frame = CGRectMake(0, 0, 163*2/3, 156/3-0.5);
+        leftBtn.titleLabel.font = [UIFont systemFontOfSize:18];
+        [leftBtn setTitle:@"知识库" forState:UIControlStateNormal];
+        [leftBtn setTitleColor:[UIColor whiteColor] forState:UIControlStateNormal];
+        [leftBtn addTarget:self action:@selector(zhishiku:) forControlEvents:UIControlEventTouchUpInside];
+        
+        UIView * lineview = [[UIView alloc]initWithFrame:CGRectMake(5,156/3 , 163*2/3-10, 1)];
+        lineview.backgroundColor = [UIColor whiteColor];
+        
+        UIButton * rightBtn = [UIButton buttonWithType:UIButtonTypeCustom];
+        rightBtn.frame = CGRectMake(0, 156/3+1, 163*2/3, 156/3-0.5);
+        [rightBtn setTitleColor:[UIColor whiteColor] forState:UIControlStateNormal];
+        rightBtn.titleLabel.font = [UIFont systemFontOfSize:18];
+        [rightBtn setTitle:@"审核" forState:UIControlStateNormal];
+        [rightBtn addTarget:self action:@selector(shenHeBtn:) forControlEvents:UIControlEventTouchUpInside];
+        
+        
+        [_menuV addSubview:leftBtn];
+        [_menuV addSubview:lineview];
+        [_menuV addSubview:rightBtn];
+        
+        
+        [UIView animateWithDuration:0.5 animations:^{
+            _menuV.transform = CGAffineTransformMakeScale(1, 1);
+            _menuV.alpha = 1;
+        } completion:^(BOOL finished) {
+            
+        }];
+
+    }else{
+        [UIView animateWithDuration:0.5 animations:^{
+            _menuV.transform = CGAffineTransformMakeScale(0.01, 0.01);
+            _menuV.alpha = 0;
+
+        } completion:^(BOOL finished) {
+            [_menuV removeFromSuperview];
+        }];
+    }
+    _RightBtn.selected = !_RightBtn.selected;
     
     _flag = item.tag;
 }
 
+
 -(void)removeView:(UITapGestureRecognizer *)tap{
     _RightBtn.selected = !_RightBtn.selected;
-    [self.menuM removeFromSuperview];
+    __weak typeof(self) weakSelf = self;
+    [UIView animateWithDuration:0.5 animations:^{
+        _menuV.transform = CGAffineTransformMakeScale(0.01, 0.01);
+        _menuV.alpha = 0;
+    } completion:^(BOOL finished) {
+        [weakSelf.menuM removeFromSuperview];
+    }];
 }
+
+
 -(void)shenHeBtn:(UIButton *)btn{
     
     NSLog(@"审核");
@@ -159,7 +185,28 @@
 }
 
 
+-(CABasicAnimation *)scale:(NSNumber *)Multiple orgin:(NSNumber *)orginMultiple durTimes:(float)time Rep:(float)repeatTimes //缩放
 
-
+{
+    
+    CABasicAnimation *animation=[CABasicAnimation animationWithKeyPath:@"transform.scale"];
+    
+    animation.fromValue=orginMultiple;
+    
+    animation.toValue=Multiple;
+    
+    animation.duration=time;
+    
+    animation.autoreverses=YES;
+    
+    animation.repeatCount=repeatTimes;
+    
+    animation.removedOnCompletion=NO;
+    
+    animation.fillMode=kCAFillModeForwards;
+    
+    return animation;
+    
+}
 
 @end

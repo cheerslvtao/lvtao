@@ -9,6 +9,9 @@
 #import <UIKit/UIKit.h>
 
 @interface FuWuDanViewController : UIViewController<UITableViewDelegate,UITableViewDataSource>
+
 @property(nonatomic,strong)UITableView*tabView;
+
 @property(nonatomic,strong)UITableView*wanchengtabView;
+
 @end

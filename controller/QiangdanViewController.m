@@ -18,7 +18,7 @@
     [super viewDidLoad];
     self.automaticallyAdjustsScrollViewInsets=NO;
     self.view.backgroundColor=[UIColor colorWithRed:242.0/255.0 green:246.0/255.0 blue:247.0/255.0 alpha:1];
-    self.navigationItem.title=@"抢单";
+
     UIImageView*wifiView=[[UIImageView alloc]initWithFrame:CGRectMake([UIScreen mainScreen].bounds.size.width/10, 30, 74, 64)];
     wifiView.image=[UIImage imageNamed:@"xinhao_3"];
     [self.view addSubview:wifiView];

@@ -100,6 +100,9 @@
     [self.view addSubview:phoneLabel];
     
 }
+
+#pragma mark == 处理键盘覆盖问题  textfiled代理方法
+
 -(void)viewWillAppear:(BOOL)animated{
     //使用NSNotificationCenter 键盘出现时
     [[NSNotificationCenter defaultCenter] addObserver:self
@@ -116,7 +119,6 @@
                                                  name:UIKeyboardWillHideNotification object:nil];
 }
 
-#pragma mark == 处理键盘覆盖问题  textfiled代理方法
 - (void)textFieldDidBeginEditing:(UITextField *)textField{
     
     if (self.view.frame.size.height - keyboardHeight <= textField.frame.origin.y + textField.frame.size.height) {

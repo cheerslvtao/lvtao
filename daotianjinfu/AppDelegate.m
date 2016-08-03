@@ -68,7 +68,9 @@
 
 // - 注册 DeviceToken
 -(void)application:(UIApplication *)application didRegisterForRemoteNotificationsWithDeviceToken:(NSData *)deviceToken{
-    [JPUSHService registerDeviceToken:deviceToken];
+    dispatch_async(dispatch_get_global_queue(0, 0), ^{
+        [JPUSHService registerDeviceToken:deviceToken];
+    });
 }
 
 //  处理收到的 APNs 消息
@@ -84,6 +86,7 @@
     ViewController * checking = [[ViewController alloc]init];
     checking.hidesBottomBarWhenPushed = YES;
     [[rootVC.viewControllers objectAtIndex:0]  pushViewController:checking animated:YES];
+    
     completionHandler(UIBackgroundFetchResultNewData);
 }
 
@@ -95,7 +98,10 @@
 
 //程序进入前台的时候讲小红点标志 置为0
 -(void)applicationWillEnterForeground:(UIApplication *)application{
-    [application setApplicationIconBadgeNumber:0];
+    dispatch_async(dispatch_get_global_queue(0, 0), ^{
+        [application setApplicationIconBadgeNumber:0];
+    });
+
 }
 
 #pragma mark == 3D Touch
@@ -143,6 +149,12 @@
     [UINavigationBar appearance].translucent = NO;
     [[UINavigationBar appearance] setBackgroundImage:[barImage imageWithRenderingMode:UIImageRenderingModeAlwaysOriginal] forBarMetrics:UIBarMetricsDefault];
     [[UINavigationBar appearance] setBarStyle:UIBarStyleBlack];
+
+    //    if (1) {
+//        self.extendedLayoutIncludesOpaqueBars = NO;
+//        
+//        self.edgesForExtendedLayout = UIRectEdgeBottom | UIRectEdgeLeft | UIRectEdgeRight;
+//    }
     
 }
 

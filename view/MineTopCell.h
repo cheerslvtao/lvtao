@@ -9,6 +9,7 @@
 #import <UIKit/UIKit.h>
 
 @interface MineTopCell : UITableViewCell
+
 @property (weak, nonatomic) IBOutlet UIImageView *headerImage;
 @property (weak, nonatomic) IBOutlet UILabel *userName;
 @property (weak, nonatomic) IBOutlet UILabel *accountNumber;

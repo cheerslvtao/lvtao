@@ -12,10 +12,15 @@
 @interface FuWuDanViewController ()<UIScrollViewDelegate>
 
 @property (nonatomic,strong) NSMutableArray *selectStuats;
+
 @property(nonatomic,retain)UIButton*weiWanChengBtn;
+
 @property(nonatomic,retain)UIButton*yiWanChengBtn;
+
 @property(nonatomic,retain)UIView*infoView;
+
 @property(nonatomic,retain)UIScrollView*scroll;
+
 @property (nonatomic,strong) UIView * animatView;
 
 @end
@@ -28,7 +33,7 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-
+    
     self.title.accessibilityElementsHidden = YES;
     self.view.backgroundColor=[UIColor whiteColor];
     self.automaticallyAdjustsScrollViewInsets=NO;

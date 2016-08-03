@@ -31,13 +31,25 @@
     topLabel.backgroundColor = [UIColor whiteColor];
     [self.view addSubview:topLabel];
     
-    UILabel * label = [[UILabel alloc]initWithFrame:CGRectMake(10, 41, width_screen-20, height_screen-41-64)];
+    UILabel * label = [[UILabel alloc]init];
+    label.numberOfLines = 0;
     label.text = @"爱护肤我傲风宏伟覅还哦啊发hi欧佛is分his对\n符合双方还是地方和司法和覅偶发回合肥是\n爱护肤我傲风宏伟覅还哦啊发hi欧佛is分his对符合双方还是地方和司法和覅偶发回合肥是爱护肤我傲风宏伟覅还哦啊发hi欧\n佛啊发hi欧佛is分his对\n符合双方还是地方和司法和覅偶发回合肥是\n爱护肤我傲风宏伟覅还哦啊发hi欧佛is分his对符合双方还是地方和司法和覅偶发回合肥是爱护肤我傲风宏伟覅还哦啊啊发hi欧佛is分his对\n符合双方还是地方和司法和覅偶发回合肥是\n爱护肤我傲风宏伟覅还哦啊发hi欧佛is分his对符合双方还是地方和司法和覅偶发回合肥是爱护肤我傲风宏伟覅还哦啊啊发hi欧佛is分his对\n符合双方还是地方和司法和覅偶发回合肥是\n爱护肤我傲风宏伟覅还哦啊发hi欧佛is分his对符合双方还是地方和司法和覅偶发回合肥是爱护肤我傲风宏伟覅还哦啊啊发hi欧佛is分his对\n符合双方还是地方和司法和覅偶发回合肥是\n爱护肤我傲风宏伟覅还哦啊发hi欧佛is分his对符合双方还是地方和司法和覅偶发回合肥是爱护肤我傲风宏伟覅还哦啊";
     
-    label.adjustsFontSizeToFitWidth = YES;
-    label.numberOfLines = 0;
-    [self.view addSubview:label];
+    CGSize labelsize = [label sizeThatFits:CGSizeMake(width_screen-10, MAXFLOAT)];
+    label.frame = CGRectMake(0,  0, labelsize.width, labelsize.height);
+    
+    NSLog(@"width==%lf  height==%lf ",labelsize.width, labelsize.height);
+    
+    UIScrollView * scrollV = [[UIScrollView alloc]init];
+    scrollV.frame = CGRectMake(5, 45, labelsize.width, height_screen);
+    scrollV.showsVerticalScrollIndicator = NO;
+    scrollV.contentSize = CGSizeMake(labelsize.width, labelsize.height+45+64);
+    scrollV.bounces = NO;
+    
+    [scrollV addSubview:label];
+    [self.view addSubview:scrollV];
 }
+
 
 #pragma mark == 左边 右边
 -(void)addRightItem{
